@@ -16,7 +16,13 @@ function App() {
 
         const contactsRef = collection(db, "contacts")
         const contactSnapshot = await getDocs(contactsRef)
-        console.log(contactSnapshot);        
+        const contactLists = contactSnapshot.docs.map((doc) =>  {
+          return {
+            id: doc.id,
+            ...doc.data()
+          }
+        });
+        setContacts(contactLists)
       } catch (error) {
         console.log(error);
       }
@@ -38,6 +44,15 @@ function App() {
         <div>
           <FaCirclePlus className="cursor-pointer text-5xl text-white" />
         </div>
+      </div>
+      <div>{
+        contacts.map((contact)=>(
+
+          <div key={contact.id}></div>
+
+        ))
+        }
+
       </div>
     </div>
   );
