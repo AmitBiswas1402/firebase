@@ -5,6 +5,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import {collection, getDocs} from 'firebase/firestore'
 import { db } from "./config/firebase";
 import {useState, useEffect} from 'react' 
+import {HiOutlineUserCircle} from 'react-icons/hi'
 
 function App() {
   const [contacts, setContacts] = useState([])
@@ -48,7 +49,13 @@ function App() {
       <div>{
         contacts.map((contact)=>(
 
-          <div key={contact.id}></div>
+          <div key={contact.id}>
+            <HiOutlineUserCircle />
+            <div className="text-white">
+              <h2 className="">{contact.name}</h2>
+              <p className="">{contact.email}</p>
+            </div>
+          </div>
 
         ))
         }
